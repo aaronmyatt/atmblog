@@ -24,7 +24,7 @@ const DesktopNavLink = tw(Link)`
     px-3 py-2 rounded-md text-base font-medium hover:bg-slate-700 hover:text-white
 `;
 
-function Layout({ children, location }) {
+function Layout({ children }) {
   const isSSR = typeof window === "undefined";
 
   return (
@@ -49,9 +49,10 @@ function Layout({ children, location }) {
                           <DesktopNavLink
                             key={item.name}
                             to={item.href}
-                            $active={matchPath(item.href)}
+                            $active={!isSSR && matchPath(item.href)}
                             aria-current={
-                              matchPath(item.href) ? "page" : undefined
+                              !isSSR &&
+                              (matchPath(item.href) ? "page" : undefined)
                             }
                           >
                             {item.name}
@@ -85,8 +86,10 @@ function Layout({ children, location }) {
                       as={MobileNavLink}
                       key={item.name}
                       to={item.href}
-                      $active={matchPath(item.href)}
-                      aria-current={matchPath(item.href) ? "page" : undefined}
+                      $active={!isSSR && matchPath(item.href)}
+                      aria-current={
+                        !isSSR && (matchPath(item.href) ? "page" : undefined)
+                      }
                     >
                       {item.name}
                     </Disclosure.Button>
