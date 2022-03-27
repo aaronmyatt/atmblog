@@ -25,6 +25,8 @@ const DesktopNavLink = tw(Link)`
 `;
 
 function Layout({ children, location }) {
+  const isSSR = typeof window === "undefined";
+
   return (
     <>
       <div className="min-h-full">
@@ -98,7 +100,7 @@ function Layout({ children, location }) {
         <header className="bg-white shadow">
           <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold text-slate-900 capitalize">
-              {(window && location.pathname.replace("/", "")) || "Articles"}
+              {(!isSSR && location.pathname.replace("/", "")) || "Articles"}
             </h1>
           </div>
         </header>
