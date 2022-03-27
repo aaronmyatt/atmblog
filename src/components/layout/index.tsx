@@ -24,7 +24,7 @@ const DesktopNavLink = tw(Link)`
     px-3 py-2 rounded-md text-base font-medium hover:bg-slate-700 hover:text-white
 `;
 
-function Layout({ children }) {
+function Layout({ children, location }) {
   return (
     <>
       <div className="min-h-full">
